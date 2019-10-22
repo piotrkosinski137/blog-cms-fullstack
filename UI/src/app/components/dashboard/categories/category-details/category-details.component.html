@@ -1,0 +1,18 @@
+<div class="container m-4">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card text-center">
+        <div class="card-header bg-success text-white">
+          <p class="display-4">Title: {{category.title}}</p>
+          <p class="lead">Created: {{category.dateAdded}}</p>
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let post of category.posts">
+          <li class="list-group-item">{{post.title}}</li>
+        </ul>
+        <div class="card-footer">
+            <button class="btn btn-outline-success btn-block text-center" [routerLink]="['/categories']">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

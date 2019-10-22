@@ -1,0 +1,97 @@
+<section id="header" class="bg-primary py-3">
+  <div class="container text-white">
+    <div class="row">
+      <div class="col-md-6">
+        <i class="fas fa-pencil-alt fa-3x mb-3 mr-3"></i>
+        <h1 class="d-inline">Posts</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="search" class="bg-light py-4 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 ml-auto">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Posts...">
+          <div class="input-group-append">
+            <button class="btn btn-primary">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="table">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header"><h4>Latest Posts</h4></div>
+          <table class="table table-striped text-center">
+            <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let post of (posts$ | async)">
+              <td>{{post.id}}</td>
+              <td>{{post.title}}</td>
+              <td>{{post.category}}</td>
+              <td>{{post.localDateAdded}}</td>
+              <td>
+                <div class="text-left text-white">
+                  <a class="btn btn-secondary mb-1" (click)="loadPostDetails()">
+                    <i class="fas fa-angle-double-right mr-2"></i>Details
+                  </a>
+                  <a class="btn btn-danger">
+                    <i class="fas fa-trash-alt mr-3"></i>Delete Post
+                  </a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <!--          PAGINATION-->
+          <nav class="ml-auto pr-4">
+            <ul class="pagination">
+              <li class="page-item">
+                <a href="" class="page-link">Previous</a>
+              </li>
+              <li class="page-item active">
+                <a href="" class="page-link">1</a>
+              </li>
+              <li class="page-item">
+                <a href="" class="page-link">2</a>
+              </li>
+              <li class="page-item">
+                <a href="" class="page-link">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-6" *ngIf="shouldShowPostDetails">
+        <app-editpost ></app-editpost>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="footer" class="bg-dark py-3">
+  <footer>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <p class="text-muted">&copy; Copyright Blogen</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>

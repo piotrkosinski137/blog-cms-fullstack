@@ -1,0 +1,188 @@
+<section id="header" class="bg-primary py-4 text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <i class="fas fa-cog fa-3x mr-2"></i>
+        <h1 class="d-inline">Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="buttons" class="bg-light py-4 text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <a class="btn btn-primary btn-block" data-target="#postModal" data-toggle="modal">
+          <i class="fas fa-plus mr-2"></i>Add Post
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-success btn-block" data-target="#categoryModal" data-toggle="modal">
+          <i class="fas fa-plus mr-2"></i>Add Category
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-warning btn-block" data-target="#userModal" data-toggle="modal">
+          <i class="fas fa-plus mr-2"></i>Add User
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="boxes">
+  <div class="container">
+    <div class="col-md-3 text-white text-center ml-auto">
+      <div class="card bg-primary my-3">
+        <div class="card-body">
+          <h2>Posts</h2>
+          <h4 class="display-4">
+            <i class="fas fa-pencil-alt mb-3 mr-2"></i> 6
+          </h4>
+          <a class="btn btn-outline-light" [routerLink]="['/posts']">View</a>
+        </div>
+      </div>
+      <div class="card bg-success my-3">
+        <div class="card-body">
+          <h2>Categories</h2>
+          <h4 class="display-4">
+            <i class="fas fa-folder mb-3 mr-4"></i>4
+          </h4>
+          <a class="btn btn-outline-light" [routerLink]="['/categories']">View</a>
+        </div>
+      </div>
+      <div class="card bg-warning my-3">
+        <div class="card-body">
+          <h2>Users</h2>
+          <h4 class="display-4">
+            <i class="fas fa-users mb-3 mr-4"></i>4
+          </h4>
+          <a class="btn btn-outline-light" [routerLink]="['/users']">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="footer" class="bg-dark text-white py-4">
+  <footer>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <p class="text-muted">&copy; Copyright Blogen</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</section>
+
+
+<!--User Modal
+<div class="modal fade" id="userModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-white">
+        <h5 class="modal-title">Add User</h5>
+        <button class="close" data-dismiss="modal">
+          <span class="text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">Email</label>
+            <input type="email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">Confirm Password</label>
+            <input type="password" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" data-dismiss="modal">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--Category Modal
+<div class="modal fade" id="categoryModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Add Category</h5>
+        <button class="close" data-dismiss="modal">
+          <span class="text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group">
+            <label for="" class="">Title</label>
+            <input type="text" class="form-control">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--POST MODAL-->
+<!--<div class="modal fade" id="postModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Add post</h5>
+        <button class="close" data-dismiss="modal">
+          <span class="text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select name="" id="" class="form-control">
+              <option value="" disabled>&#45;&#45; Choose category &#45;&#45;</option>
+              <option value="">Web Development</option>
+              <option value="">Tech Gadgets</option>
+              <option value="">Business</option>
+              <option value="">Health & Wellness</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="image">Upload Image</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="image">
+              <label for="image" class="custom-file-label">Choose File</label>
+            </div>
+            <small class="form-text text-muted">Max size 3mb</small>
+          </div>
+          <div class="form-group">
+            <label class="">Body</label>
+            <textarea name="editor1" id="editor1" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->

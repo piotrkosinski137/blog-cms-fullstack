@@ -1,0 +1,57 @@
+<section id="header" class="bg-primary pt-2 text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <i class="fas fa-user fa-3x mb-3 mr-4"></i>
+        <h3 class="d-inline">Blogen Admin</h3>
+      </div>
+    </div>
+  </div>
+  <div class="grey-pasek bg-light mb-3"></div>
+</section>
+
+
+<section id="login">
+  <form class="container" [formGroup]="credentialsForm" (ngSubmit)="onLoginClick()">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-header"><h3>Account Login</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <h5>Email</h5>
+              <input type="text" class="form-control" formControlName="email"
+                     [ngClass]="{'is-invalid': credentialsForm.get('email').touched && credentialsForm.get('email').invalid}">
+              <div class="invalid-feedback" *ngIf="credentialsForm.get('email').touched && credentialsForm.get('email').invalid">
+                <div *ngIf="credentialsForm.get('email').errors.required">Email is required field</div>
+                <div *ngIf="credentialsForm.get('email').errors.minlength">Email should have at least 5 characters</div>
+                <div *ngIf="credentialsForm.get('email').errors.maxlength">Email should have not more than 20 characters</div>
+                <div *ngIf="credentialsForm.get('email').errors.email">Email must be a valid email Address</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <h5>Password</h5>
+              <input type="password" class="form-control" formControlName="password"
+                     [ngClass]="{'is-invalid': credentialsForm.get('password').touched && credentialsForm.get('password').invalid}">
+              <div class="invalid-feedback" *ngIf="credentialsForm.get('password').touched && credentialsForm.get('password').invalid">
+                <div *ngIf="credentialsForm.get('password').errors.required">Password is required field</div>
+                <div *ngIf="credentialsForm.get('password').errors.minlength">Password should have at least 4 characters</div>
+                <div *ngIf="credentialsForm.get('password').errors.maxlength">Password should have not more than 20 characters</div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" [disabled]="!credentialsForm.valid">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+
+<section id="footer" class="bg-dark text-center py-4 mt-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <p class="text-muted">&copy; Copyright Blogen</p>
+    </div>
+  </div>
+</section>
