@@ -14,3 +14,8 @@ export const getToken = createSelector(
   getAuthFeatureState,
   (state: AuthState) => state.token
 );
+
+export const getRole = createSelector(
+  getAuthFeatureState,
+  (state: AuthState) => state.role
+);

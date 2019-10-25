@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Post} from "../../../../model/post";
 
 @Component({
   selector: 'app-editpost',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-post.component.scss']
 })
 export class EditPostComponent implements OnInit {
+
+  @Input()
+  editedPost: Post;
 
   constructor() { }
 

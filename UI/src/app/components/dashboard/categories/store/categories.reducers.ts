@@ -26,7 +26,7 @@ export function categoriesReducer(state = initialState, action: CategoriesAction
       return {
         ...state,
         totalPages: action.pageResponse.totalPages,
-        categories: action.pageResponse.content
+        categories: action.pageResponse.elements
       }
     }
     default:

@@ -36,6 +36,11 @@ public class BlogenApplication implements CommandLineRunner {
 
         postRepository.save(new Post("How to be cool","img.jpg","lorem23...", LocalDateTime.now(), category1));
         postRepository.save(new Post("Be or Not to be","img.jpg","lorem23...", LocalDateTime.now(), category1));
-
+        postRepository.save(new Post("3How to be cool","img.jpg","lorem23...", LocalDateTime.now(), category1));
+        postRepository.save(new Post("444Be or Not to be","img.jpg","lorem23...", LocalDateTime.now(), category1));
+        postRepository.save(new Post("123How to be cool","img.jpg","lorem23...", LocalDateTime.now(), category1));
+        postRepository.save(new Post("123Be or Not to be","img.jpg","lorem23...", LocalDateTime.now(), category1));
+        postRepository.save(new Post("1233How to be cool","img.jpg","lorem23...", LocalDateTime.now(), category1));
+        postRepository.save(new Post("123444Be or Not to be","img.jpg","lorem23...", LocalDateTime.now(), category1));
     }
 }

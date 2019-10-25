@@ -1,4 +1,5 @@
 export interface PageResponse<ElementT> {
-  content: ElementT[];
+  elements: ElementT[];
   totalPages: number;
+  totalElements: number;
 }

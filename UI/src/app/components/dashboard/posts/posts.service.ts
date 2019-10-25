@@ -16,4 +16,10 @@ export class PostsService {
 
     return this.http.get('api/posts', {params: params});
   }
+
+  deletePost(id: number) {
+    let params = new HttpParams();
+    params = params.append('id', '' + id);
+    return this.http.delete('api/posts', {params: params})
+  }
 }

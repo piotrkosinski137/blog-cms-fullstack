@@ -7,8 +7,8 @@ import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {Observable, of} from "rxjs";
 import {Action} from "@ngrx/store";
-import {AuthActionsTypes, TryLogIn} from "./auth.actions";
-import {catchError, map, mergeMap} from "rxjs/operators";
+import {AuthActionsTypes, TryLogIn, TryRegisterUser} from "./auth.actions";
+import {catchError, exhaustMap, map, mergeMap} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
@@ -20,7 +20,7 @@ export class AuthEffects {
 
   @Effect()
   login: Observable<Action> = this.actions$.pipe(ofType(AuthActionsTypes.TRY_LOG_IN),
-    mergeMap((actionInput: TryLogIn) =>
+    exhaustMap((actionInput: TryLogIn) =>
       this.authService.login(actionInput.credentials).pipe(
         map((response: JwtAuthenticationResponse) => {
           this.router.navigate(['/dashboard']);
@@ -35,6 +35,25 @@ export class AuthEffects {
       }, 1500);
       return of(null)
       // return of(new authActions.LoginFailed())
+    })
+  );
+
+  @Effect()
+  register: Observable<Action> = this.actions$.pipe(ofType(AuthActionsTypes.TRY_REGISTER_USER),
+    exhaustMap((actionInput: TryRegisterUser) =>
+      this.authService.register(actionInput.user).pipe(
+        map((result: any) => {
+          confirm("You have successfully created user with id: " + result )
+          return new authActions.RegisterUserSuccess()
+        })
+      )
+    ), catchError((response: HttpErrorResponse) => {
+      console.log(response.error);
+      this.toastrService.error(response.error, 'Register failed');
+      setTimeout(function () {
+        window.location.reload();
+      }, 1500);
+       return of(new authActions.RegisterUserFailed())
     })
   );
 }

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class LoadPostsProxy implements LoadPosts {
 
@@ -17,11 +19,13 @@ public class LoadPostsProxy implements LoadPosts {
         loadPosts = new LoadPostsUsecase(postsQueryGateway);
     }
 
+    @Transactional
     @Override
     public Post loadById(Integer id) {
         return loadPosts.loadById(id);
     }
 
+    @Transactional
     @Override
     public Page<Post> loadPage(PageRequest pageRequest) {
         return loadPosts.loadPage(pageRequest);

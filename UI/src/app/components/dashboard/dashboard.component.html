@@ -22,7 +22,7 @@
           <i class="fas fa-plus mr-2"></i>Add Category
         </a>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3" *ngIf="(role$ | async) == 'ROLE_ADMIN'">
         <a class="btn btn-warning btn-block" data-target="#userModal" data-toggle="modal">
           <i class="fas fa-plus mr-2"></i>Add User
         </a>
@@ -78,7 +78,6 @@
 </section>
 
 
-<!--User Modal
 <div class="modal fade" id="userModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -89,31 +88,46 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="">
+        <form [formGroup]="userModal">
           <div class="form-group">
-            <label for="">Name</label>
-            <input type="text" class="form-control">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email"
+                   [ngClass]="{'is-invalid': userModal.get('email').touched && userModal.get('email').invalid}">
+            <div class="invalid-feedback" *ngIf="userModal.get('email').touched && userModal.get('email').invalid">
+              <div *ngIf="userModal.get('email').errors.required">Email is required field</div>
+              <div *ngIf="userModal.get('email').errors.minlength">Email should have at least 5 characters</div>
+              <div *ngIf="userModal.get('email').errors.maxlength">Email should have not more than 20 characters</div>
+              <div *ngIf="userModal.get('email').errors.email">Email must be a valid email Address</div>
+            </div>
           </div>
           <div class="form-group">
-            <label for="">Email</label>
-            <input type="email" class="form-control">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password">
           </div>
           <div class="form-group">
-            <label for="">Password</label>
-            <input type="password" class="form-control">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control" formControlName="confirmPassword"
+                   [ngClass]="{'is-invalid': userModal.get('confirmPassword').touched && userModal.get('confirmPassword').invalid}">
           </div>
           <div class="form-group">
-            <label for="">Confirm Password</label>
-            <input type="password" class="form-control">
+            <label>Role</label>
+            <select class="custom-select" formControlName="role">
+              <option disabled>Choose your city</option>
+              <option *ngFor="let r of DropDownRoles | keyvalue" [ngValue]="r">
+                {{r.key}}</option>
+            </select>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-warning" (click)="onCreateUserClick()" data-dismiss="modal"
+                    [disabled]="!userModal.valid">Save Changes
+            </button>
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-warning" data-dismiss="modal">Save Changes</button>
-      </div>
     </div>
   </div>
-</div>-->
+</div>
 
 <!--Category Modal
 <div class="modal fade" id="categoryModal">

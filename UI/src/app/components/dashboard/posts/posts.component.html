@@ -29,10 +29,10 @@
     <div class="row">
       <div class="col-6">
         <div class="card">
-          <div class="card-header"><h4>Latest Posts</h4></div>
+          <div class="card-header text-primary"><h4>Latest Posts</h4></div>
           <table class="table table-striped text-center">
-            <thead class="thead-dark">
-            <tr>
+            <thead class="bg-primary">
+            <tr class="text-white">
               <th>#</th>
               <th>Title</th>
               <th>Category</th>
@@ -44,14 +44,14 @@
             <tr *ngFor="let post of (posts$ | async)">
               <td>{{post.id}}</td>
               <td>{{post.title}}</td>
-              <td>{{post.category}}</td>
+              <td>{{post.categoryTitle}}</td>
               <td>{{post.localDateAdded}}</td>
               <td>
                 <div class="text-left text-white">
-                  <a class="btn btn-secondary mb-1" (click)="loadPostDetails()">
+                  <a class="btn btn-secondary mb-1" (click)="loadPostDetails(post)">
                     <i class="fas fa-angle-double-right mr-2"></i>Details
                   </a>
-                  <a class="btn btn-danger">
+                  <a class="btn btn-danger" (click)="onDeletePostClick(post.id)">
                     <i class="fas fa-trash-alt mr-3"></i>Delete Post
                   </a>
                 </div>
@@ -62,24 +62,33 @@
           <!--          PAGINATION-->
           <nav class="ml-auto pr-4">
             <ul class="pagination">
-              <li class="page-item">
-                <a href="" class="page-link">Previous</a>
+              <li class="page-item" *ngIf="currentPage >= 1">
+                <a class="page-link" (click)="onNextPageClicked(-1)">Previous</a>
+              </li>
+              <li class="page-item" *ngIf="currentPage >= 1">
+                <a class="page-link">{{getCurrentPageNumber(-1)}}</a>
               </li>
               <li class="page-item active">
-                <a href="" class="page-link">1</a>
+                <a class="page-link">{{getCurrentPageNumber(0)}}</a>
               </li>
-              <li class="page-item">
-                <a href="" class="page-link">2</a>
+              <li class="page-item" *ngIf="currentPage + 2 < totalPages">
+                <a class="page-link">{{getCurrentPageNumber(1)}}</a>
               </li>
-              <li class="page-item">
-                <a href="" class="page-link">Next</a>
+              <li class="page-item disabled" *ngIf="currentPage + 2 < totalPages">
+                <a class="page-link">...</a>
+              </li>
+              <li class="page-item" *ngIf="currentPage +1 < totalPages">
+                <a class="page-link">{{getLastPageNumber()}}</a>
+              </li>
+              <li class="page-item" *ngIf="currentPage + 1 !== totalPages">
+                <a class="page-link" (click)="onNextPageClicked(1)">Next</a>
               </li>
             </ul>
           </nav>
         </div>
       </div>
       <div class="col-6" *ngIf="shouldShowPostDetails">
-        <app-editpost ></app-editpost>
+        <app-editpost [editedPost]="post"></app-editpost>
       </div>
     </div>
   </div>

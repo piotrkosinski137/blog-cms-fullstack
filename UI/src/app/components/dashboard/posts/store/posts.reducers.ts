@@ -26,7 +26,7 @@ export function postsReducer(state = initialState, action: PostsActions) {
     case PostsActionTypes.LOAD_POSTS_PAGE_SUCCESS: {
       return {
         ...state,
-        posts: action.pageResponse.content,
+        posts: action.pageResponse.elements,
         totalPages: action.pageResponse.totalPages
       }
     }

@@ -9,3 +9,13 @@ export const getPosts = createSelector(
   getPostsFeatureState,
   (state: PostsState) => state.posts
 );
+
+export const getTotalPages = createSelector(
+  getPostsFeatureState,
+  (state: PostsState) => state.totalPages
+);
+
+export const getCurrentPage = createSelector(
+  getPostsFeatureState,
+  (state: PostsState) => state.currentPage
+);

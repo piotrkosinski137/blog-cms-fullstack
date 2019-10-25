@@ -23,7 +23,7 @@ public class Category {
     @Column(name = "DATE_ADDED")
     private LocalDate dateAdded;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
 
     private Category() {

@@ -64,10 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/owners/register/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/pets/**").hasAnyRole("PET_OWNER", "DOCTOR")
-                .antMatchers(HttpMethod.GET, "/owners/**").hasAnyRole("DOCTOR", "PET_OWNER")
+                .antMatchers(HttpMethod.GET, "/user/**").hasAnyRole( "ADMIN")
                 .anyRequest().authenticated();
         http.csrf().disable();
         http.headers().frameOptions().disable();

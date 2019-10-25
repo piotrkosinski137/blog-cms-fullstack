@@ -27,4 +27,9 @@ public class DatabasePostGateway implements PostsQueryGateway, PostsCommandGatew
     public Page<Post> loadPage(PageRequest pageRequest) {
         return postRepository.findAll(pageRequest);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        postRepository.deleteById(id);
+    }
 }
