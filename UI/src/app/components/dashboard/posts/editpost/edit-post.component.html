@@ -9,11 +9,11 @@
           <div class="card-body">
             <div class="form-group">
               <h4>Title</h4>
-              <input type="text" class="form-control" value="Post One">
+              <input type="text" class="form-control" value="{{editedPost.title}}">
             </div>
             <div class="form-group">
               <h4>Category</h4>
-              <input type="text" class="form-control" value="Web Development">
+              <input type="text" class="form-control" value="{{editedPost.categoryTitle}}">
             </div>
             <div class="form-group">
               <label for="image">Upload Image</label>
@@ -23,7 +23,7 @@
               </div>
               <small class="form-text text-muted">Max size 3mb</small>
             </div>
-            <textarea rows="10" class="form-control">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Accusamus adearum incidunt placeat soluta! Dolorum ducimus inventore neque nulla possimus.</textarea>
+            <textarea rows="10" class="form-control">{{editedPost.article}}</textarea>
           </div>
         </div>
       </div>

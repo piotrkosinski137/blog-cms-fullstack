@@ -2,32 +2,39 @@ package com.blogen.user.controller;
 
 import com.blogen.auth.Role;
 import com.blogen.auth.User;
-import org.modelmapper.AbstractConverter;
-import org.modelmapper.Converter;
-import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
+@Component
 class UserMapper {
 
-    private final ModelMapper mapper;
-
     UserMapper() {
-        mapper = new ModelMapper();
-        mapper.addConverter(convertStringToRoleEnum);
+
     }
 
     UserDTO toDTO(User user) {
-        return mapper.map(user, UserDTO.class);
+        return null;
     }
 
     User toEntity(UserDTO userDTO) {
-        //mapper.addConverter(convertStringToRoleEnum);
-        return mapper.map(userDTO, User.class);
+        return User.create()
+                .withEmail(userDTO.getCredentialsEmail())
+                .withPassword(verifyPassword(userDTO.getCredentialsPassword(), userDTO.getConfirmPassword()))
+                .andRole(verifyRole(userDTO.getRole()));
     }
 
-    private static Converter<String, Role> convertStringToRoleEnum =
-            new AbstractConverter<String, Role>() {
-                protected Role convert(String stringRole) {
-                    return Role.valueOf(stringRole);
-                }
-            };
+    private Role verifyRole(String role) {
+        return Arrays.asList(Role.values()).stream()
+                .filter((Role r) -> r.name().equals(role))
+                .findAny()
+                .orElseThrow(() -> new RuntimeException("Invalid role"));
+    }
+
+    private String verifyPassword(String password, String confirmPassword) {
+        if (!password.equals(confirmPassword)) {
+            throw new RuntimeException("Password and confirm password doesn't match");
+        }
+        return password;
+    }
 }

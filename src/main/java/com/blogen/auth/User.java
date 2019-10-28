@@ -15,45 +15,50 @@ public class User {
     @Column(name = "PASSWORD")
     private String credentialsPassword;
 
+    @Transient
+    private String confirmPassword;
+
     @Column(name = "ROLE")
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    private User() {
+    User() {
+        this.id = EntityId.create();
     }
 
-    public User(EntityId id, String credentialsEmail, String credentialsPassword, Role role) {
-        this.id = id;
-        this.credentialsEmail = credentialsEmail;
-        this.credentialsPassword = credentialsPassword;
-        this.role = role;
+    public static UserBuilderInterfaces.UserEmailInterface create() {
+        return UserBuilder.getInstance();
     }
 
     public EntityId getId() {
         return id;
     }
 
-    public void setId(EntityId id) {
-        this.id = id;
-    }
-
     public String getCredentialsEmail() {
         return credentialsEmail;
-    }
-
-    public void setCredentialsEmail(String credentialsEmail) {
-        this.credentialsEmail = credentialsEmail;
     }
 
     public String getCredentialsPassword() {
         return credentialsPassword;
     }
 
-    public void setCredentialsPassword(String credentialsPassword) {
+    public Role getRole() {
+        return role;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    void setCredentialsEmail(String credentialsEmail) {
+        this.credentialsEmail = credentialsEmail;
+    }
+
+    void setCredentialsPassword(String credentialsPassword) {
         this.credentialsPassword = credentialsPassword;
     }
 
-    public Role getRole() {
-        return role;
+    void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -7,11 +7,11 @@ import org.modelmapper.ModelMapper;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class PostMapper {
+public class Mapper {
 
     private static final ModelMapper mapper = new ModelMapper();
 
-    private PostMapper() {
+    private Mapper() {
     }
 
     public static ModelMapper initialize() {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoadPostsController {
 
     private final LoadPosts loadPosts;
-    private final ModelMapper mapper = PostMapper.initialize();
+    private final ModelMapper mapper = Mapper.initialize();
 
     public LoadPostsController(LoadPosts loadPosts) {
         this.loadPosts = loadPosts;

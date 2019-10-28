@@ -6,9 +6,9 @@ import spock.lang.Specification
 
 import java.time.LocalDateTime
 
-class PostMapperTest extends Specification {
+class MapperTest extends Specification {
 
-    final def mapper = PostMapper.initialize()
+    final def mapper = Mapper.initialize()
 
     def "should correctly map post to DTO"() {
         given:

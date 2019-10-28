@@ -13,6 +13,8 @@ public class UserDTO {
     @JsonProperty(value = "password")
     private String credentialsPassword;
 
+    private String confirmPassword;
+
     @JsonProperty(value = "email")
     private String credentialsEmail;
 
@@ -49,5 +51,13 @@ public class UserDTO {
 
     public void setCredentialsEmail(String credentialsEmail) {
         this.credentialsEmail = credentialsEmail;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

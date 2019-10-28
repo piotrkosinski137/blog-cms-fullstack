@@ -24,6 +24,8 @@ import {CategoriesEffects} from "./components/dashboard/categories/store/categor
 import {TokenInterceptor} from "./commons/auth/token.interceptor";
 import { CategoryDetailsComponent } from './components/dashboard/categories/category-details/category-details.component';
 import {PostsEffects} from "./components/dashboard/posts/store/posts.effects";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {UsersEffects} from "./components/dashboard/users/store/users.effects";
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {PostsEffects} from "./components/dashboard/posts/store/posts.effects";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     AppRoutingModule,
@@ -48,7 +51,7 @@ import {PostsEffects} from "./components/dashboard/posts/store/posts.effects";
     StoreDevtoolsModule.instrument({
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects, CategoriesEffects, PostsEffects])
+    EffectsModule.forRoot([AuthEffects, CategoriesEffects, PostsEffects, UsersEffects])
   ],
   providers: [
     {

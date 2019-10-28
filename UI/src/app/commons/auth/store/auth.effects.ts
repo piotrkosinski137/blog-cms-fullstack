@@ -1,14 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Actions, Effect, ofType} from "@ngrx/effects";
 import * as authActions from "./auth.actions";
+import {AuthActionsTypes, TryLogIn, TryRegisterUser} from "./auth.actions";
 import {JwtAuthenticationResponse} from "../JwtAuthenticationResponse";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 import {Observable, of} from "rxjs";
 import {Action} from "@ngrx/store";
-import {AuthActionsTypes, TryLogIn, TryRegisterUser} from "./auth.actions";
-import {catchError, exhaustMap, map, mergeMap} from "rxjs/operators";
+import {catchError, exhaustMap, map} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
@@ -38,22 +38,24 @@ export class AuthEffects {
     })
   );
 
+
+  //catch error inside exhaustMap doesn't kill Observable!
   @Effect()
-  register: Observable<Action> = this.actions$.pipe(ofType(AuthActionsTypes.TRY_REGISTER_USER),
+  register: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionsTypes.TRY_REGISTER_USER),
     exhaustMap((actionInput: TryRegisterUser) =>
       this.authService.register(actionInput.user).pipe(
-        map((result: any) => {
-          confirm("You have successfully created user with id: " + result )
+        map(() => {
+          this.toastrService.success('User successfully created');
           return new authActions.RegisterUserSuccess()
+        }),
+        catchError((response: HttpErrorResponse) => {
+          this.toastrService.error(response.error, 'Register failed');
+          return of(new authActions.RegisterUserFailed())
         })
       )
-    ), catchError((response: HttpErrorResponse) => {
-      console.log(response.error);
-      this.toastrService.error(response.error, 'Register failed');
-      setTimeout(function () {
-        window.location.reload();
-      }, 1500);
-       return of(new authActions.RegisterUserFailed())
-    })
+    )
   );
 }
+
+
