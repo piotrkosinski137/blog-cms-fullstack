@@ -9,7 +9,6 @@
   </div>
 </section>
 
-
 <section id="search" class="bg-light py-4">
   <div class="container">
     <div class="row justify-content-end">
@@ -38,36 +37,16 @@
             <thead class="thead-dark">
               <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>ROLE</th>
                 <th>Email</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Piotr</td>
-                <td>piotrkosinski1992@o2.pl</td>
-                <td>
-                  <a href="" class="btn btn-secondary">
-                    <i class="fas fa-angle-double-right mr-2"></i>Details
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Ada</td>
-                <td>piotrkosinski1992@o2.pl</td>
-                <td>
-                  <a href="" class="btn btn-secondary">
-                    <i class="fas fa-angle-double-right mr-2"></i>Details
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Karotek</td>
-                <td>piotrkosinski1992@o2.pl</td>
+              <tr *ngFor="let user of (users$ | async)">
+                <td>{{user.id}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.email}}</td>
                 <td>
                   <a href="" class="btn btn-secondary">
                     <i class="fas fa-angle-double-right mr-2"></i>Details
